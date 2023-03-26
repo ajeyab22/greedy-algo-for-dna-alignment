@@ -19,6 +19,7 @@ int main() {
     if (in_file.is_open())
     {
         getline(in_file, line);
+        int count=0;
         while (getline(in_file, line) )
         {
             a += line;
@@ -29,6 +30,7 @@ int main() {
     if (in_file_2.good())
     {
         getline(in_file_2, line);
+        int count=0;
         while (getline(in_file_2, line) )
         {
             b += line;
@@ -56,7 +58,7 @@ int main() {
     for (int i = 0; i < (max(M, N) + 1); i++) {
         R[i] = (double*)malloc((2*max(M, N) + 1) * sizeof(double));     
     }
-    double T_arr[max(M, N) + 1];
+    double *T_arr= (double*)malloc((max(M, N) + 1) * sizeof(double));
     i=0;
     while ((i < min(M, N)) && (a[i] == b[i])) {
         i++;
@@ -68,6 +70,7 @@ int main() {
     int L = 0;
     int U = 0;
     cout<<"Greedy algorithm"<<endl;
+    int count=0;
     do {
         
         d++;
@@ -128,7 +131,8 @@ int main() {
             }
         }
 
-    } while ((L > U + 2));
+
+    } while ((L > U + 2) && count<500 );
     auto stop =steady_clock::now();
     auto totime=duration_cast<milliseconds>(stop - start).count();
     cout<<"Optimal score:"<<TPrime << endl;
